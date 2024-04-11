@@ -9,21 +9,21 @@ namespace HR.LeaveManagement.Application.Features.LeaveType.Queries.GetAllLeaveT
 public class GetLeaveTypesQueryHandler : IRequestHandler<GetLeaveTypesQuery, List<LeaveTypeDto>>
 {
     private readonly IMapper _mapper;
-    private readonly ILeaveAllocationRepository _leaveRepository;
+    private readonly ILeaveTypeRepository _leaveTypeRepository;
     private readonly IAppLogger<GetLeaveTypesQueryHandler> _logger;
 
     public GetLeaveTypesQueryHandler(
-        IMapper mapper, ILeaveAllocationRepository leaveRepository, IAppLogger<GetLeaveTypesQueryHandler> logger
+        IMapper mapper, ILeaveTypeRepository leaveTypeRepository, IAppLogger<GetLeaveTypesQueryHandler> logger
         )
     {
         _mapper = mapper;
-        _leaveRepository = leaveRepository;
+        _leaveTypeRepository = leaveTypeRepository;
         this._logger = logger;
     }
     public async Task<List<LeaveTypeDto>> Handle(GetLeaveTypesQuery request, CancellationToken cancellationToken)
     {
         // Query the database
-        var leaveTypes = await _leaveRepository.GetAsync();
+        var leaveTypes = await _leaveTypeRepository.GetAsync();
 
         // Map to DTOs
         var data = _mapper.Map<List<LeaveTypeDto>>(leaveTypes);

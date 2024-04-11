@@ -17,9 +17,9 @@ public static class PersistenceServiceRegistration
             options.UseSqlServer(conf.GetConnectionString("HrDatabaseConnectionString"));
         });
 
-        services.AddScoped(typeof(IGenericRepository<>), typeof(IGenericRepository<>));
-        services.AddScoped<ILeaveAllocationRepository, ILeaveAllocationRepository>();
-        services.AddScoped<ILeaveRequestRepository, ILeaveRequestRepository>();
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<ILeaveAllocationRepository, LeaveAllocationRepository>();
+        services.AddScoped<ILeaveRequestRepository, LeaveRequestRepository>();
         services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>();
 
         return services;
